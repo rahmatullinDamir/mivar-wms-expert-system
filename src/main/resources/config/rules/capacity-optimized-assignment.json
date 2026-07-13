@@ -1,0 +1,17 @@
+{
+  "id": "capacity-optimized-assignment-1",
+  "description": "Обычный заказ: выбрать свободного робота с подходящей грузоподъемностью и минимальным расстоянием до зоны назначения",
+  "priority": 60,
+  "triggers": ["NEW_ORDER", "SYSTEM_STARTUP", "ROBOT_STATUS_CHANGED"],
+  "active": true,
+  "conditions": [
+    "f.hasPendingOrders(state)",
+    "f.hasFreeRobots(state)"
+  ],
+  "actions": [
+    "f.assignBestRobotToFirstPendingOrder(state)",
+    "f.explain('Обычный заказ обработан правилом оптимизации по грузоподъемности/расстоянию')"
+  ],
+  "producedEvents": ["ORDER_ASSIGNED"],
+  "meta": { "author": "ops", "version": "1.0" }
+}

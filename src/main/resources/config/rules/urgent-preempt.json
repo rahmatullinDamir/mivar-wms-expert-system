@@ -1,0 +1,17 @@
+{
+  "id": "urgent-preempt-1",
+  "description": "Срочный заказ: назначить лучшего свободного робота с учетом грузоподъемности и расстояния",
+  "priority": 100,
+  "triggers": ["NEW_ORDER", "SYSTEM_STARTUP"],
+  "active": true,
+  "conditions": [
+    "f.hasUrgentPendingOrders(state)",
+    "f.hasFreeRobots(state)"
+  ],
+  "actions": [
+    "f.assignBestRobotToUrgentOrder(state)",
+    "f.explain('Срочный заказ обработан по приоритетному правилу urgent-preempt-1')"
+  ],
+  "producedEvents": ["ORDER_ASSIGNED", "URGENT_ORDER_ASSIGNED"],
+  "meta": { "author": "ops", "version": "1.0" }
+}

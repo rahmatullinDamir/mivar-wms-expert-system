@@ -1,0 +1,17 @@
+{
+  "id": "heavy-item-assignment-1",
+  "description": "Тяжелый заказ: назначить только робота с достаточной грузоподъемностью",
+  "priority": 80,
+  "triggers": ["NEW_ORDER", "SYSTEM_STARTUP", "ROBOT_STATUS_CHANGED"],
+  "active": true,
+  "conditions": [
+    "f.hasPendingOrders(state)",
+    "f.hasFreeRobots(state)"
+  ],
+  "actions": [
+    "f.assignHeavyOrderToCapableRobot(state, 20.0)",
+    "f.explain('Проверка тяжелых заказов (вес >= 20) выполнена')"
+  ],
+  "producedEvents": ["HEAVY_ORDER_ASSIGNED"],
+  "meta": { "author": "ops", "version": "1.0" }
+}
