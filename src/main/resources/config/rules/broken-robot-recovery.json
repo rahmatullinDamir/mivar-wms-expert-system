@@ -1,0 +1,18 @@
+{
+  "id": "broken-robot-recovery-1",
+  "description": "Сбой робота: перепланировать и переназначить ожидающий заказ на свободного робота",
+  "priority": 90,
+  "triggers": ["ROBOT_STATUS_CHANGED", "SYSTEM_STARTUP"],
+  "active": true,
+  "conditions": [
+    "f.hasBrokenRobots(state)",
+    "f.hasPendingOrders(state)",
+    "f.hasFreeRobots(state)"
+  ],
+  "actions": [
+    "f.recoverFromBrokenRobot(state)",
+    "f.explain('Выполнено аварийное перепланирование после сбоя робота')"
+  ],
+  "producedEvents": ["ORDER_REASSIGNED_AFTER_FAILURE"],
+  "meta": { "author": "ops", "version": "1.0" }
+}

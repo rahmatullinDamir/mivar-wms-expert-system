@@ -11,15 +11,22 @@ java {
     }
 }
 
+// Принудительно устанавливаем кодировку UTF-8 для компиляции Java
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
 repositories {
     mavenCentral()
 }
 
 dependencies {
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.18.2'
+    implementation 'org.apache.commons:commons-jexl3:3.2'
 
     compileOnly 'org.projectlombok:lombok:1.18.36'
     annotationProcessor 'org.projectlombok:lombok:1.18.36'
+
     implementation 'org.slf4j:slf4j-api:2.0.16'
     implementation 'ch.qos.logback:logback-classic:1.5.16'
 
@@ -30,4 +37,18 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+task run(type: JavaExec) {
+    group = 'application'
+    description = 'Runs the main class with UTF-8 console encoding flags'
+
+    mainClass = 'dev.rahmatullin.Main'
+    classpath = sourceSets.main.runtimeClasspath
+
+    jvmArgs(
+            "-Dfile.encoding=UTF-8",
+            "-Dsun.stdout.encoding=UTF-8",
+            "-Dsun.stderr.encoding=UTF-8"
+    )
 }
