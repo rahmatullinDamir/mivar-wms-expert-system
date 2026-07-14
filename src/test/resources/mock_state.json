@@ -1,0 +1,42 @@
+{
+  "robots": [
+    {
+      "id": "R-01",
+      "liftingCapacity": 50,
+      "currentZoneId": "ZONE_ASSEMBLY",
+      "status": "FREE",
+      "position": {"x": 10, "y": 10}
+    }
+  ],
+  "orders": [
+    {
+      "id": "TASK-1",
+      "parentOrderId": "ORD-1001",
+      "itemId": "VIN-12345-BUMPER",
+      "destinationZoneId": "ZONE_CHELNY_EXPRESS",
+      "urgent": true,
+      "status": "PENDING"
+    }
+  ],
+  "shelves": [
+    {
+      "id": "SHELF-A1",
+      "fullness": 80,
+      "currentZoneId": "ZONE_STORAGE",
+      "position": {"x": 50, "y": 50}
+    }
+  ],
+  "items": [
+    {
+      "id": "VIN-12345-BUMPER",
+      "weight": 12.5,
+      "shelfId": "SHELF-A1"
+    }
+  ],
+  "zones": [
+    {
+      "id": "ZONE_CHELNY_EXPRESS",
+      "center": {"x": 100, "y": 100}
+    }
+  ]
+}
